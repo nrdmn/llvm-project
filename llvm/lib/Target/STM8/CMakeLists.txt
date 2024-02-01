@@ -1,0 +1,23 @@
+add_llvm_component_group(STM8)
+
+set(LLVM_TARGET_DEFINITIONS STM8.td)
+
+tablegen(LLVM STM8GenRegisterInfo.inc -gen-register-info)
+
+add_public_tablegen_target(STM8CommonTableGen)
+
+add_llvm_target(STM8CodeGen
+  STM8TargetMachine.cpp
+
+  DEPENDS
+  intrinsics_gen
+
+  LINK_COMPONENTS
+  Core
+
+  ADD_TO_COMPONENT
+  STM8
+  )
+
+add_subdirectory(MCTargetDesc)
+add_subdirectory(TargetInfo)
