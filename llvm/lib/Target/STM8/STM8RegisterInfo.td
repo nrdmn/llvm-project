@@ -58,7 +58,7 @@ let SubRegIndices = [sub_lo, sub_hi], CoveredBySubRegs = 1 in {
 }
 
 // 24bit registers
-let SubRegIndices = [sub_lo, sub_hi, sub_ex], CoveredBySubRegs = 1 in {
+let SubRegIndices = [sub_lo, sub_hi, sub_ex], CoveredBySubRegs = 0 in {
   def R_PC : STM8Reg<13, "PC", [R_PCL, R_PCH, R_PCE]>, DwarfRegNum<[9]>;  // the PC
 }
 
@@ -97,7 +97,7 @@ def GPRY : RegisterClass<"STM8", [i16], 8, (add R_Y)>;   // long
 
 // program counter
 def GPRPCL : RegisterClass<"STM8", [i16], 8, (add R_PCHL)>; // long
-def GPRPCE : RegisterClass<"STM8", [i24], 8, (add R_PC)>;   // extended
+def GPRPCE : RegisterClass<"STM8", [i32], 8, (add R_PC)>;   // extended
 
 // Register class used for the stack read pseudo instruction.
 def GPRSP : RegisterClass<"STM8", [i16], 8, (add R_SP)>;
