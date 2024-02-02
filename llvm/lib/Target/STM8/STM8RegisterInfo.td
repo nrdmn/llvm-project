@@ -42,9 +42,9 @@ def R_YL : STM8Reg<3, "YL">, DwarfRegNum<[3]>;      // lower byte of Y
 def R_YH : STM8Reg<4, "YH">, DwarfRegNum<[4]>;      // higher byte of Y
 def R_C : STM8Reg<5, "C">, DwarfRegNum<[5]>;        // status register
 
-def R_PCE : STM8Reg<6, "PCE">, DwarfRegNum<[10]>;   // extended byte of PC[24:16]
-def R_PCH : STM8Reg<7, "PCH">, DwarfRegNum<[11]>;   // higher byte of PC[16:8]
-def R_PCL : STM8Reg<8, "PCL">, DwarfRegNum<[12]>;   // lower byte of PC [8:0]
+def R_PCE : STM8Reg<6, "PCE">, DwarfRegNum<[-1]>;   // extended byte of PC[24:16]
+def R_PCH : STM8Reg<7, "PCH">, DwarfRegNum<[-1]>;   // higher byte of PC[16:8]
+def R_PCL : STM8Reg<8, "PCL">, DwarfRegNum<[-1]>;   // lower byte of PC [8:0]
 
 // 16bit (sub)registers
 def R_SP : STM8Reg<11, "SP">, DwarfRegNum<[8]>;     // stack pointer
@@ -54,7 +54,7 @@ let SubRegIndices = [sub_lo, sub_hi], CoveredBySubRegs = 1 in {
   def R_Y : STM8Reg<10, "Y", [R_YL, R_YH]>, DwarfRegNum<[7]>;  // Y index
 
   // TODO: is it needed?
-  def R_PCHL : STM8Reg<12, "PCH:PCL", [R_PCL, R_PCH]>, DwarfRegNum<[13]>;  // compilation targt register
+  def R_PCHL : STM8Reg<12, "PCH:PCL", [R_PCL, R_PCH]>, DwarfRegNum<[-1]>;  // compilation targt register
 }
 
 // 24bit registers
