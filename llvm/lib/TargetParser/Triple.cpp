@@ -72,6 +72,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case spirv:          return "spirv";
   case spirv32:        return "spirv32";
   case spirv64:        return "spirv64";
+  case stm8:           return "stm8";
   case systemz:        return "s390x";
   case tce:            return "tce";
   case tcele:          return "tcele";
@@ -248,6 +249,8 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
   case dxil:        return "dx";
 
   case xtensa:      return "xtensa";
+
+  case stm8:        return "stm8";
   }
 }
 
@@ -490,6 +493,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
     .Case("loongarch64", loongarch64)
     .Case("dxil", dxil)
     .Case("xtensa", xtensa)
+    .Case("stm8", stm8)
     .Default(UnknownArch);
 }
 
@@ -636,6 +640,7 @@ static Triple::ArchType parseArch(StringRef ArchName) {
                  "dxilv1.4", "dxilv1.5", "dxilv1.6", "dxilv1.7", "dxilv1.8",
                  Triple::dxil)
           .Case("xtensa", Triple::xtensa)
+          .Case("stm8", Triple::stm8)
           .Default(Triple::UnknownArch);
 
   // Some architectures require special parsing logic just to compute the
@@ -979,6 +984,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::ve:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::stm8:
     return Triple::ELF;
 
   case Triple::mipsel:
@@ -1653,6 +1659,9 @@ unsigned Triple::getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
   case llvm::Triple::avr:
   case llvm::Triple::msp430:
     return 16;
+
+  case llvm::Triple::stm8:
+    return 24;
 
   case llvm::Triple::aarch64_32:
   case llvm::Triple::amdil:
