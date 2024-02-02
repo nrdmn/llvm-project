@@ -14,12 +14,25 @@
 
 #include "llvm/CodeGen/Passes.h"
 #include "llvm/CodeGen/TargetPassConfig.h"
+#include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include "llvm/IR/Module.h"
 #include "llvm/MC/TargetRegistry.h"
+#include "llvm/Target/TargetMachine.h"
 
 namespace llvm {
 
-extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {
+STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
+                                     StringRef CPU, StringRef FS,
+                                     const TargetOptions &Options,
+                                     std::optional<Reloc::Model> RM,
+                                     std::optional<CodeModel::Model> CM,
+                                     CodeGenOptLevel OL, bool JIT)
+    : LLVMTargetMachine(T, "TODO DATA LAYOUT", TT, CPU, FS, Options,
+                        RM.value_or(Reloc::Static),
+                        CM.value_or(CodeModel::Small),
+                        OL) {
+  initAsmInfo();
 }
+extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {}
 
 } // end of namespace llvm

@@ -9,5 +9,13 @@
 #include "TargetInfo/STM8TargetInfo.h"
 #include "llvm/MC/TargetRegistry.h"
 
+using namespace llvm;
+
+Target &getTheSTM8Target() {
+  static Target TheSTM8Target;
+  return TheSTM8Target;
+}
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetInfo() {
+  RegisterTarget<Triple::stm8, /*HasJIT=*/false> X(getTheSTM8Target(),
+                                                    "stm8", "stm8", "stm8");
 }
