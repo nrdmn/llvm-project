@@ -1541,6 +1541,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::amdgcn:
   case Triple::avr:
+  case Triple::stm8:
   case Triple::bpfeb:
   case Triple::bpfel:
   case Triple::msp430:
@@ -1622,6 +1623,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::arc:
   case Triple::avr:
+  case Triple::stm8:
   case Triple::csky:
   case Triple::dxil:
   case Triple::hexagon:
@@ -1708,6 +1710,7 @@ Triple Triple::getBigEndianArchVariant() const {
   case Triple::amdil64:
   case Triple::amdil:
   case Triple::avr:
+  case Triple::stm8:
   case Triple::dxil:
   case Triple::hexagon:
   case Triple::hsail64:
@@ -1811,6 +1814,7 @@ bool Triple::isLittleEndian() const {
   case Triple::amdil:
   case Triple::arm:
   case Triple::avr:
+  case Triple::stm8:
   case Triple::bpfel:
   case Triple::csky:
   case Triple::dxil:
