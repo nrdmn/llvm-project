@@ -1,4 +1,4 @@
-//===-- STM8MCTargetDesc.h - STM8 Target Descriptions -----------*- C++ -*-===//
+//===-- STM8Subtarget.cpp - STM8 Subtarget Information --------------------===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,19 +6,20 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// This file provides STM8 specific target descriptions.
+// This file implements the STM8 specific subclass of TargetSubtargetInfo.
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLVM_STM8_MCTARGET_DESC_H
-#define LLVM_STM8_MCTARGET_DESC_H
+#include "STM8Subtarget.h"
 
-#include "llvm/Support/DataTypes.h"
+#include "llvm/MC/TargetRegistry.h"
 
-#define GET_REGINFO_ENUM
-#include "STM8GenRegisterInfo.inc"
+#define DEBUG_TYPE "stm8-subtarget"
 
-#define GET_SUBTARGETINFO_ENUM
+#define GET_SUBTARGETINFO_TARGETDESC
+#define GET_SUBTARGETINFO_CTOR
 #include "STM8GenSubtargetInfo.inc"
 
-#endif // LLVM_STM8_MCTARGET_DESC_H
+namespace llvm {
+
+}

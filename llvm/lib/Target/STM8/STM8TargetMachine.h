@@ -17,6 +17,8 @@
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include "llvm/Target/TargetMachine.h"
 
+#include <STM8Subtarget.h>
+
 #include <optional>
 
 namespace llvm {
@@ -39,7 +41,7 @@ public:
 
   virtual const STM8InstrInfo *getInstrInfo() const { return &InstrInfo; }
   virtual const TargetFrameInfo *getFrameInfo() const { return &FrameInfo; }
-  const TargetSubtargetInfo *getSubtargetImpl(const Function &) const override { return nullptr; }
+  const STM8Subtarget *getSubtargetImpl(const Function &) const override { return nullptr; }
   virtual const TargetRegisterInfo *getRegisterInfo() const { return nullptr; }
   virtual const class DataLayout *getDataLayout() const { return nullptr; }
 
