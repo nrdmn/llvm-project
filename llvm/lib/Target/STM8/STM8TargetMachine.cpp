@@ -33,6 +33,7 @@ STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
                         OL) {
   initAsmInfo();
 }
-extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {}
+extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {
+}
 
 } // end of namespace llvm
