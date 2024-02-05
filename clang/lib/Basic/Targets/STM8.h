@@ -54,7 +54,7 @@ public:
     Int16Type = SignedInt;
     Char32Type = UnsignedLong;
     SigAtomicType = SignedChar;
-    resetDataLayout("e-p:24-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8:16-a:8");
+    resetDataLayout("e-p:24:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8:16-a:8");
   };
 
   void getTargetDefines(const LangOptions &Opts, MacroBuilder &Builder) const override;
