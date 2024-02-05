@@ -21,18 +21,22 @@
 
 namespace llvm {
 
+static const char *STM8DataLayout =
+    "e-p:24:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8:16-a:8";
+
 STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
                                      StringRef CPU, StringRef FS,
                                      const TargetOptions &Options,
                                      std::optional<Reloc::Model> RM,
                                      std::optional<CodeModel::Model> CM,
                                      CodeGenOptLevel OL, bool JIT)
-    : LLVMTargetMachine(T, "TODO DATA LAYOUT", TT, CPU, FS, Options,
+    : LLVMTargetMachine(T, STM8DataLayout, TT, CPU, FS, Options,
                         RM.value_or(Reloc::Static),
                         CM.value_or(CodeModel::Small),
                         OL) {
   initAsmInfo();
 }
+
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {}
 
 } // end of namespace llvm
