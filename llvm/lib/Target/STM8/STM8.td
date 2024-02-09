@@ -30,6 +30,8 @@ def : Processor<"generic", NoItineraries, []>;
 // Instruction Descriptions
 //===---------------------------------------------------------------------===//
 
+include "STM8InstrInfo.td"
+
 def STM8InstrInfo : InstrInfo;
 
 def STM8AsmWriter : AsmWriter {
