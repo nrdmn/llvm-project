@@ -1,5 +1,6 @@
 add_llvm_component_library(LLVMSTM8Desc
   STM8MCTargetDesc.cpp
+  STM8MCAsmInfo.cpp
 
   LINK_COMPONENTS
   MC
