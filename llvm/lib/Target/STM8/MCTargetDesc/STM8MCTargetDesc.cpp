@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "STM8MCTargetDesc.h"
+#include "STM8MCAsmInfo.h"
 #include "TargetInfo/STM8TargetInfo.h"
 
 #include "llvm/MC/MCRegisterInfo.h"
@@ -22,6 +23,13 @@
 
 using namespace llvm;
 
+static MCAsmInfo *createSTM8MCAsmInfo(const MCRegisterInfo &MRI,
+                                      const Triple &TT,
+                                      const MCTargetOptions &Options) {
+  MCAsmInfo *MAI = new STM8MCAsmInfo(TT);
+  return MAI;
+}
+
 static MCRegisterInfo *createSTM8MCRegisterInfo(const Triple &TT) {
   MCRegisterInfo *X = new MCRegisterInfo();
   InitSTM8MCRegisterInfo(X, 0);
@@ -29,6 +37,9 @@ static MCRegisterInfo *createSTM8MCRegisterInfo(const Triple &TT) {
 }
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
+  // Register the MC asm info
+  TargetRegistry::RegisterMCAsmInfo(getTheSTM8Target(), createSTM8MCAsmInfo);
+
   // Register the MC register info
   TargetRegistry::RegisterMCRegInfo(getTheSTM8Target(), createSTM8MCRegisterInfo);
 }
