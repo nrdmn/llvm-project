@@ -18,6 +18,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Target/TargetMachine.h"
+#include "TargetInfo/STM8TargetInfo.h"
 
 namespace llvm {
 
@@ -38,5 +39,8 @@ STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
 }
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {}
+  // Register the target
+  RegisterTargetMachine<STM8TargetMachine> X(getTheSTM8Target());
 
+  auto &PR = *PassRegistry::getPassRegistry();
 } // end of namespace llvm
