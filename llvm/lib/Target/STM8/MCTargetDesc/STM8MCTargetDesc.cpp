@@ -16,11 +16,15 @@
 
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCRegisterInfo.h"
+#include "llvm/MC/MCSubtargetInfo.h"
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/MC/MCAsmBackend.h"
 
 #define GET_INSTRINFO_MC_DESC
 #include "STM8GenInstrInfo.inc"
+
+#define GET_SUBTARGETINFO_MC_DESC
+#include "STM8GenSubtargetInfo.inc"
 
 #define GET_REGINFO_MC_DESC
 #include "STM8GenRegisterInfo.inc"
@@ -46,6 +50,11 @@ static MCRegisterInfo *createSTM8MCRegisterInfo(const Triple &TT) {
   return X;
 }
 
+static MCSubtargetInfo *createSTM8MCSubtargetInfo(const Triple &TT,
+                                                  StringRef CPU, StringRef FS) {
+  return createSTM8MCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPU, FS);
+}
+
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
   // Register the MC asm info
   TargetRegistry::RegisterMCAsmInfo(getTheSTM8Target(), createSTM8MCAsmInfo);
@@ -55,5 +64,8 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
 
   // Register the MC register info
   TargetRegistry::RegisterMCRegInfo(getTheSTM8Target(), createSTM8MCRegisterInfo);
+
+  // Register the MC subtarget info
+  TargetRegistry::RegisterMCSubtargetInfo(getTheSTM8Target(), createSTM8MCSubtargetInfo);
 
 }
