@@ -2,6 +2,7 @@ add_llvm_component_group(STM8)
 
 set(LLVM_TARGET_DEFINITIONS STM8.td)
 
+tablegen(LLVM STM8GenInstrInfo.inc -gen-instr-info)
 tablegen(LLVM STM8GenRegisterInfo.inc -gen-register-info)
 tablegen(LLVM STM8GenSubtargetInfo.inc -gen-subtarget)
 
