@@ -48,6 +48,8 @@ public:
   // Pass Pipeline Configuration
   virtual bool addInstSelector(PassManagerBase &PM, bool Fast) { return false; };
   virtual bool addPreEmitPass(PassManagerBase &PM, bool Fast) { return false; };
+
+  TargetPassConfig *createPassConfig(PassManagerBase &PM) override;
 };
 
 } // end namespace llvm
