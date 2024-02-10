@@ -19,6 +19,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/MC/TargetRegistry.h"
 #include "llvm/Target/TargetMachine.h"
+#include "STM8.h"
 #include "TargetInfo/STM8TargetInfo.h"
 
 namespace llvm {
@@ -52,10 +53,15 @@ public:
   STM8PassConfig(STM8TargetMachine &TM, PassManagerBase &PM)
       : TargetPassConfig(TM, PM) {}
 
+  STM8TargetMachine &getSTM8TargetMachine() const {
+    return getTM<STM8TargetMachine>();
+  }
+
   bool addInstSelector() override;
 };
 
 bool STM8PassConfig::addInstSelector() {
+  addPass(createSTM8ISelDag(getSTM8TargetMachine(), getOptLevel()));
   return false;
 }
 
