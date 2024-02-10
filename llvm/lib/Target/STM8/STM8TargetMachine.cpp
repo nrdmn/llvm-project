@@ -38,9 +38,12 @@ STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
   initAsmInfo();
 }
 
-extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {}
+extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {
   // Register the target
   RegisterTargetMachine<STM8TargetMachine> X(getTheSTM8Target());
 
   auto &PR = *PassRegistry::getPassRegistry();
+  // TODO initialize passes
+}
+
 } // end of namespace llvm
