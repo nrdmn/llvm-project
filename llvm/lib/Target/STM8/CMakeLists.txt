@@ -9,10 +9,10 @@ tablegen(LLVM STM8GenSubtargetInfo.inc -gen-subtarget)
 add_public_tablegen_target(STM8CommonTableGen)
 
 add_llvm_target(STM8CodeGen
-  STM8TargetMachine.cpp
+  STM8FrameLowering.cpp
   STM8RegisterInfo.cpp
   STM8Subtarget.cpp
-  STM8FrameLowering.cpp
+  STM8TargetMachine.cpp
 
   DEPENDS
   intrinsics_gen
