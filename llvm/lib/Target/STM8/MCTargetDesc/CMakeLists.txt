@@ -1,5 +1,6 @@
 add_llvm_component_library(LLVMSTM8Desc
   STM8MCAsmInfo.cpp
+  STM8MCCodeEmitter.cpp
   STM8MCTargetDesc.cpp
 
   LINK_COMPONENTS
