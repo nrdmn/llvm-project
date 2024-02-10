@@ -29,4 +29,5 @@ class STM8Inst<dag outs, dag ins, string asmstr, list<dag> pattern, int size>
 
 class F8<bits<8> opcode, dag outs, dag ins, string asmstr, list<dag> pattern>
     : STM8Inst<outs, ins, asmstr, pattern, 1> {
+  field bits<8> Inst = opcode;
 }
