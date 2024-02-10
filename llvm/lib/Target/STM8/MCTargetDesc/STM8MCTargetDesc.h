@@ -15,6 +15,10 @@
 
 #include "llvm/Support/DataTypes.h"
 
+#define GET_INSTRINFO_ENUM
+#define GET_INSTRINFO_MC_HELPER_DECLS
+#include "STM8GenInstrInfo.inc"
+
 #define GET_REGINFO_ENUM
 #include "STM8GenRegisterInfo.inc"
 

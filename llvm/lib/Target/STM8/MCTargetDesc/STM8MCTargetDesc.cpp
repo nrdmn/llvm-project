@@ -55,6 +55,13 @@ static MCSubtargetInfo *createSTM8MCSubtargetInfo(const Triple &TT,
   return createSTM8MCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPU, FS);
 }
 
+namespace llvm {
+
+MCCodeEmitter *createSTM8MCCodeEmitter(const MCInstrInfo &MCII,
+                                       MCContext &Ctx);
+
+} // end of namespace llvm
+
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
   // Register the MC asm info
   TargetRegistry::RegisterMCAsmInfo(getTheSTM8Target(), createSTM8MCAsmInfo);
@@ -68,4 +75,6 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
   // Register the MC subtarget info
   TargetRegistry::RegisterMCSubtargetInfo(getTheSTM8Target(), createSTM8MCSubtargetInfo);
 
+  // Register the MC Code Emitter
+  TargetRegistry::RegisterMCCodeEmitter(getTheSTM8Target(), createSTM8MCCodeEmitter);
 }
