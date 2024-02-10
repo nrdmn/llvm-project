@@ -1,4 +1,4 @@
-//===- STM8InstrInfo.td - Target Description for STM8 -*- tablegen -*--===//
+//===- STM8InstrInfo.td - Target Description for STM8 -----*- tablegen -*--===//
 //
 //                     The LLVM Compiler Infrastructure
 //
