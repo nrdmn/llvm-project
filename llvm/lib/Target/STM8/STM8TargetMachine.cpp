@@ -12,6 +12,7 @@
 
 #include "STM8TargetMachine.h"
 
+#include "STM8.h"
 #include "llvm/CodeGen/Passes.h"
 #include "llvm/CodeGen/TargetPassConfig.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
@@ -51,10 +52,15 @@ public:
   STM8PassConfig(STM8TargetMachine &TM, PassManagerBase &PM)
       : TargetPassConfig(TM, PM) {}
 
+  STM8TargetMachine &getSTM8TargetMachine() const {
+    return getTM<STM8TargetMachine>();
+  }
+
   bool addInstSelector() override;
 };
 
 bool STM8PassConfig::addInstSelector() {
+  addPass(createSTM8ISelDag(getSTM8TargetMachine(), getOptLevel()));
   return false;
 }
 
