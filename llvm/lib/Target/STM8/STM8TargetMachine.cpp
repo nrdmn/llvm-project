@@ -46,4 +46,20 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8Target() {
   // TODO initialize passes
 }
 
+class STM8PassConfig : public TargetPassConfig {
+public:
+  STM8PassConfig(STM8TargetMachine &TM, PassManagerBase &PM)
+      : TargetPassConfig(TM, PM) {}
+
+  bool addInstSelector() override;
+};
+
+bool STM8PassConfig::addInstSelector() {
+  return false;
+}
+
+TargetPassConfig *STM8TargetMachine::createPassConfig(PassManagerBase &PM) {
+  return new STM8PassConfig(*this, PM);
+}
+
 } // end of namespace llvm
