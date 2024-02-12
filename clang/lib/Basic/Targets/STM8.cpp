@@ -17,8 +17,6 @@ namespace clang {
 namespace targets {
 
 void STM8TargetInfo::getTargetDefines(const LangOptions &Opts, MacroBuilder &Builder) const {
-  Builder.defineMacro("STM8");
-  Builder.defineMacro("__STM8");
   Builder.defineMacro("__STM8__");
 }
 
