@@ -96,7 +96,6 @@ add_clang_library(clangBasic
   Targets/ARC.cpp
   Targets/ARM.cpp
   Targets/AVR.cpp
-  Targets/STM8.cpp
   Targets/BPF.cpp
   Targets/CSKY.cpp
   Targets/DirectX.cpp
@@ -113,6 +112,7 @@ add_clang_library(clangBasic
   Targets/PPC.cpp
   Targets/RISCV.cpp
   Targets/SPIR.cpp
+  Targets/STM8.cpp
   Targets/Sparc.cpp
   Targets/SystemZ.cpp
   Targets/TCE.cpp
