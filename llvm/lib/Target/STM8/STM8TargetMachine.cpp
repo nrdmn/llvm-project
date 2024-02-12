@@ -23,8 +23,16 @@
 
 namespace llvm {
 
-constexpr const char *STM8DataLayout =
-    "e-p:24:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8:16-a:8";
+constexpr char STM8DataLayout[] = "e-"      // little endian
+                                  "p:24:8-" // PointerMemSize=24, PointerABIAlign = 1
+                                  "i8:8-"   // i8 alignment is 1
+                                  "i16:8-"  // i16 alignment is 1
+                                  "i32:8-"  // i32 alignment is 1
+                                  "i64:8-"  // i64 alignment is 1
+                                  "f32:8-"  // f32 alignment is 1
+                                  "f64:8-"  // f64 alignment is 1
+                                  "n8:16-"  // native integer widths are 8, 16
+                                  "a:8";    // aggregate alignment is 1
 
 STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
                                      StringRef CPU, StringRef FS,
