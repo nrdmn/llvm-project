@@ -16,8 +16,8 @@
 #include "llvm/CodeGen/CodeGenTargetMachineImpl.h"
 #include "llvm/IR/DataLayout.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
-
-#include <STM8Subtarget.h>
+#include "STM8Subtarget.h"
+#include "llvm/Target/TargetMachine.h"
 
 #include <optional>
 
