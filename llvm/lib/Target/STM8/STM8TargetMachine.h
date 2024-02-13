@@ -13,11 +13,8 @@
 #ifndef LLVM_STM8_TARGET_MACHINE_H
 #define LLVM_STM8_TARGET_MACHINE_H
 
-#include "llvm/IR/DataLayout.h"
-#include "llvm/CodeGen/TargetSubtargetInfo.h"
+#include "STM8Subtarget.h"
 #include "llvm/Target/TargetMachine.h"
-
-#include <STM8Subtarget.h>
 
 #include <optional>
 
