@@ -13,11 +13,9 @@
 #include "STM8TargetMachine.h"
 
 #include "STM8.h"
-#include "llvm/CodeGen/TargetPassConfig.h"
-#include "llvm/CodeGen/TargetSubtargetInfo.h"
-#include "llvm/MC/TargetRegistry.h"
-#include "llvm/Target/TargetMachine.h"
 #include "TargetInfo/STM8TargetInfo.h"
+#include "llvm/CodeGen/TargetPassConfig.h"
+#include "llvm/MC/TargetRegistry.h"
 
 namespace llvm {
 
