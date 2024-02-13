@@ -887,13 +887,13 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::sparcv9:
   case Triple::spir64:
   case Triple::spir:
+  case Triple::stm8:
   case Triple::tce:
   case Triple::tcele:
   case Triple::thumbeb:
   case Triple::ve:
   case Triple::xcore:
   case Triple::xtensa:
-  case Triple::stm8:
     return Triple::ELF;
 
   case Triple::ppc64:
@@ -1541,10 +1541,10 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::amdgcn:
   case Triple::avr:
-  case Triple::stm8:
   case Triple::bpfeb:
   case Triple::bpfel:
   case Triple::msp430:
+  case Triple::stm8:
   case Triple::systemz:
   case Triple::ve:
     T.setArch(UnknownArch);
@@ -1623,7 +1623,6 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::arc:
   case Triple::avr:
-  case Triple::stm8:
   case Triple::csky:
   case Triple::dxil:
   case Triple::hexagon:
@@ -1634,6 +1633,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::r600:
   case Triple::shave:
   case Triple::sparcel:
+  case Triple::stm8:
   case Triple::tce:
   case Triple::tcele:
   case Triple::xcore:
@@ -1710,7 +1710,6 @@ Triple Triple::getBigEndianArchVariant() const {
   case Triple::amdil64:
   case Triple::amdil:
   case Triple::avr:
-  case Triple::stm8:
   case Triple::dxil:
   case Triple::hexagon:
   case Triple::hsail64:
@@ -1734,6 +1733,7 @@ Triple Triple::getBigEndianArchVariant() const {
   case Triple::spirv:
   case Triple::spirv32:
   case Triple::spirv64:
+  case Triple::stm8:
   case Triple::wasm32:
   case Triple::wasm64:
   case Triple::x86:
@@ -1814,7 +1814,6 @@ bool Triple::isLittleEndian() const {
   case Triple::amdil:
   case Triple::arm:
   case Triple::avr:
-  case Triple::stm8:
   case Triple::bpfel:
   case Triple::csky:
   case Triple::dxil:
@@ -1845,6 +1844,7 @@ bool Triple::isLittleEndian() const {
   case Triple::spirv:
   case Triple::spirv32:
   case Triple::spirv64:
+  case Triple::stm8:
   case Triple::tcele:
   case Triple::thumb:
   case Triple::ve:
