@@ -11,6 +11,8 @@
 //===----------------------------------------------------------------------===//
 
 #include "STM8MCTargetDesc.h"
+
+#include "STM8AsmBackend.h"
 #include "STM8MCAsmInfo.h"
 #include "TargetInfo/STM8TargetInfo.h"
 
@@ -60,6 +62,10 @@ namespace llvm {
 MCCodeEmitter *createSTM8MCCodeEmitter(const MCInstrInfo &MCII,
                                        MCContext &Ctx);
 
+MCAsmBackend *createSTM8AsmBackend(const Target &T, const MCSubtargetInfo &STI,
+                                   const MCRegisterInfo &MRI,
+                                   const llvm::MCTargetOptions &TO);
+
 } // end of namespace llvm
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
@@ -77,4 +83,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeSTM8TargetMC() {
 
   // Register the MC Code Emitter
   TargetRegistry::RegisterMCCodeEmitter(getTheSTM8Target(), createSTM8MCCodeEmitter);
+
+  // Register the asm backend
+  TargetRegistry::RegisterMCAsmBackend(getTheSTM8Target(), createSTM8AsmBackend);
 }
