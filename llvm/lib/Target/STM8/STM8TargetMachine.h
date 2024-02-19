@@ -27,7 +27,7 @@ public:
                     std::optional<Reloc::Model> RM, std::optional<CodeModel::Model> CM,
                     CodeGenOptLevel OL, bool JIT);
 
-  const STM8Subtarget *getSubtargetImpl(const Function &) const override { return nullptr; }
+  const STM8Subtarget *getSubtargetImpl(const Function &) const override { return &Subtarget; }
 
   // Pass Pipeline Configuration
   TargetPassConfig *createPassConfig(PassManagerBase &PM) override;
@@ -38,6 +38,7 @@ public:
 
 private:
   std::unique_ptr<TargetLoweringObjectFile> TLOF;
+  STM8Subtarget Subtarget;
 };
 
 } // end namespace llvm

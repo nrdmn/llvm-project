@@ -40,7 +40,8 @@ STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
     : LLVMTargetMachine(T, STM8DataLayout, TT, CPU, FS, Options,
                         RM.value_or(Reloc::Static),
                         CM.value_or(CodeModel::Small),
-                        OL) {
+                        OL),
+      Subtarget(TT, std::string(CPU), std::string(FS), *this) {
   this->TLOF = std::make_unique<TargetLoweringObjectFileELF>();
   initAsmInfo();
 }

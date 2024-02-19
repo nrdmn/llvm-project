@@ -30,7 +30,16 @@ enum NodeType {
 
 } // end of namespace STM8ISD
 
+class STM8Subtarget;
+class STM8TargetMachine;
+
 class STM8TargetLowering : public TargetLowering {
+public:
+  explicit STM8TargetLowering(const STM8TargetMachine &TM,
+                              const STM8Subtarget &STI);
+
+private:
+  const STM8Subtarget &Subtarget;
 };
 
 } // end of namespace llvm
