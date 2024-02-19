@@ -14,6 +14,7 @@ add_llvm_target(STM8CodeGen
   STM8AsmPrinter.cpp
   STM8FrameLowering.cpp
   STM8ISelDAGToDAG.cpp
+  STM8ISelLowering.cpp
   STM8RegisterInfo.cpp
   STM8Subtarget.cpp
   STM8TargetMachine.cpp

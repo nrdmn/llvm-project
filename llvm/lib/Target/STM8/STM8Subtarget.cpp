@@ -22,4 +22,9 @@
 
 namespace llvm {
 
+STM8Subtarget::STM8Subtarget(const Triple &TT, const std::string &CPU,
+                             const std::string &FS, const STM8TargetMachine &TM)
+    : STM8GenSubtargetInfo(TT, CPU, /*TuneCPU*/ CPU, FS), FrameLowering(),
+      TLInfo(TM, *this) {}
+
 }

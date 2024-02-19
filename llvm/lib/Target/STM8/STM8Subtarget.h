@@ -29,12 +29,17 @@ class STM8Subtarget : public STM8GenSubtargetInfo {
   STM8FrameLowering FrameLowering;
   STM8TargetLowering TLInfo;
 public:
-  
+  STM8Subtarget(const Triple &TT, const std::string &CPU,
+                const std::string &FS, const STM8TargetMachine &TM);
+
   const STM8FrameLowering *getFrameLowering() const override {
     return &FrameLowering;
   }
   const STM8TargetLowering *getTargetLowering() const override {
     return &TLInfo;
+  }
+  const TargetRegisterInfo *getRegisterInfo() const override {
+    return nullptr;
   }
 };
 
