@@ -16,6 +16,7 @@
 #include "llvm/CodeGen/Passes.h"
 #include "STM8.h"
 #include "TargetInfo/STM8TargetInfo.h"
+#include "llvm/CodeGen/TargetLoweringObjectFileImpl.h"
 #include "llvm/CodeGen/TargetPassConfig.h"
 #include "llvm/MC/TargetRegistry.h"
 
@@ -42,6 +43,7 @@ STM8TargetMachine::STM8TargetMachine(const Target &T, const Triple &TT,
                                RM.value_or(Reloc::Static),
                                CM.value_or(CodeModel::Small),
                                OL) {
+  this->TLOF = std::make_unique<TargetLoweringObjectFileELF>();
   initAsmInfo();
 }
 

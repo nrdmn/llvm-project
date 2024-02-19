@@ -34,6 +34,13 @@ public:
 
   // Pass Pipeline Configuration
   TargetPassConfig *createPassConfig(PassManagerBase &PM) override;
+
+  TargetLoweringObjectFile *getObjFileLowering() const override {
+    return TLOF.get();
+  }
+
+private:
+  std::unique_ptr<TargetLoweringObjectFile> TLOF;
 };
 
 } // end namespace llvm
