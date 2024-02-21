@@ -40,6 +40,8 @@ public:
 
 private:
   const STM8Subtarget &Subtarget;
+
+  MVT getPointerTy(const DataLayout &DL, unsigned AS) const override;
 };
 
 } // end of namespace llvm

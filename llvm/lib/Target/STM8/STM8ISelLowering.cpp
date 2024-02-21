@@ -19,4 +19,10 @@ STM8TargetLowering::STM8TargetLowering(const STM8TargetMachine &TM,
                                        const STM8Subtarget &STI)
     : TargetLowering(TM), Subtarget(STI) {}
 
+MVT STM8TargetLowering::getPointerTy(const DataLayout &DL, unsigned AS) const {
+  if (AS == 0 && DL.getPointerSizeInBits(AS) == 24)
+    return MVT::i32;
+  return TargetLowering::getPointerTy(DL, AS);
+}
+
 } // end of namespace llvm
