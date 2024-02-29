@@ -23,6 +23,26 @@ namespace llvm {
 STM8TargetLowering::STM8TargetLowering(const STM8TargetMachine &TM,
                                        const STM8Subtarget &STI)
     : TargetLowering(TM) {
+
+  // Set up the register classes
+  addRegisterClass(MVT::i8, &STM8::GPR8RegClass);
+  addRegisterClass(MVT::i16, &STM8::GPR16RegClass);
+
+  // Compute derived properties from the register classes
+  computeRegisterProperties(STI.getRegisterInfo());
+
+  // TODO: Add possible instructions
+
+  // Provide all sorts of operation actions
+  setStackPointerRegisterToSaveRestore(STM8::R_SP);
+  setBooleanContents(ZeroOrOneBooleanContent);
+  setBooleanVectorContents(ZeroOrOneBooleanContent);
+
+  setMinFunctionAlignment(Align(1));
+  setPrefFunctionAlignment(Align(1));
+  setMaxAtomicSizeInBitsSupported(0);
+}
+
 //===----------------------------------------------------------------------===//
 //                      Calling Convention Implementation
 //===----------------------------------------------------------------------===//
