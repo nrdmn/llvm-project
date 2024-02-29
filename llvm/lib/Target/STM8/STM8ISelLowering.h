@@ -39,7 +39,6 @@ public:
                               const STM8Subtarget &STI);
 
 private:
-  const STM8Subtarget &Subtarget;
   SDValue LowerFormalArguments(SDValue Chain, CallingConv::ID CallConv,
                                bool isVarArg,
                                const SmallVectorImpl<ISD::InputArg> &Ins,

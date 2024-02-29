@@ -22,7 +22,7 @@ namespace llvm {
 
 STM8TargetLowering::STM8TargetLowering(const STM8TargetMachine &TM,
                                        const STM8Subtarget &STI)
-    : TargetLowering(TM), Subtarget(STI) {}
+    : TargetLowering(TM) {
 //===----------------------------------------------------------------------===//
 //                      Calling Convention Implementation
 //===----------------------------------------------------------------------===//
