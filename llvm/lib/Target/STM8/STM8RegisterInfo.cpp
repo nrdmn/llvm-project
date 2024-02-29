@@ -27,4 +27,49 @@
 
 namespace llvm {
 
+/// Initialize register info
+/// as there's no return address register, we Initialize
+/// that with 0
+STM8RegisterInfo::STM8RegisterInfo() : STM8GenRegisterInfo(0) {}
+
+const MCPhysReg *
+STM8RegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
+  // there are no callee saved regs, everything is caller saved
+  static const MCPhysReg EmptySavedRegs[] = {0};
+  return EmptySavedRegs;
+}
+
+BitVector STM8RegisterInfo::getReservedRegs(const MachineFunction &MF) const {
+  BitVector Reserved(getNumRegs());
+
+  Reserved.set(STM8::R_PC);
+  Reserved.set(STM8::R_PCE);
+  Reserved.set(STM8::R_PCH);
+  Reserved.set(STM8::R_PCL);
+  Reserved.set(STM8::R_PCHL);
+
+  Reserved.set(STM8::R_SP);
+
+  return Reserved;
+}
+
+const TargetRegisterClass *
+STM8RegisterInfo::getPointerRegClass(const MachineFunction &MF,
+                                     unsigned Kind) const {
+  // TODO: extend to actually support different memory models, so we should look
+  // at machine function
+  return &STM8::GPRPCERegClass;
+}
+
+bool STM8RegisterInfo::eliminateFrameIndex(MachineBasicBlock::iterator MI,
+                                           int SPAdj, unsigned FIOperandNum,
+                                           RegScavenger *RS) const {
+  // TODO: I've no idea yet what this does - smth. smth stack I think
+  return false;
+}
+
+Register STM8RegisterInfo::getFrameRegister(const MachineFunction &MF) const {
+  return STM8::R_SP;
+}
+
 } // end of namespace llvm
