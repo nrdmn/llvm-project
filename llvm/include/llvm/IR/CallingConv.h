@@ -261,6 +261,13 @@ namespace CallingConv {
     /// except that the first parameter is mapped to x9.
     ARM64EC_Thunk_Native = 109,
 
+    // Calling convention used by STM8 ABI according to SDCC STM8
+    // calling conv version 1
+    STM8_BUILTIN = 110,
+
+    // STM8 Interrupt calling conv
+    STM8_INTR = 111,
+
     /// The highest possible ID. Must be some 2^k - 1.
     MaxID = 1023
   };
