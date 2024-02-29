@@ -39,7 +39,23 @@ public:
                               const STM8Subtarget &STI);
 
 private:
-  const STM8Subtarget &Subtarget;
+  SDValue LowerFormalArguments(SDValue Chain, CallingConv::ID CallConv,
+                               bool isVarArg,
+                               const SmallVectorImpl<ISD::InputArg> &Ins,
+                               const SDLoc &dl, SelectionDAG &DAG,
+                               SmallVectorImpl<SDValue> &InVals) const override;
+
+  bool CanLowerReturn(CallingConv::ID CallConv, MachineFunction &MF,
+                      bool IsVarArg,
+                      const SmallVectorImpl<ISD::OutputArg> &Outs,
+                      LLVMContext &Context) const override;
+
+  SDValue LowerReturn(SDValue Chain, CallingConv::ID CallConv, bool isVarArg,
+                      const SmallVectorImpl<ISD::OutputArg> &Outs,
+                      const SmallVectorImpl<SDValue> &OutVals, const SDLoc &dl,
+                      SelectionDAG &DAG) const override;
+
+  MVT getPointerTy(const DataLayout &DL, unsigned AS) const override;
 };
 
 } // end of namespace llvm

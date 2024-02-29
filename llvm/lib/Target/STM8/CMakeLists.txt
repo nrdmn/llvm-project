@@ -2,6 +2,7 @@ add_llvm_component_group(STM8)
 
 set(LLVM_TARGET_DEFINITIONS STM8.td)
 
+tablegen(LLVM STM8GenCallingConv.inc -gen-callingconv)
 tablegen(LLVM STM8GenDAGISel.inc -gen-dag-isel)
 tablegen(LLVM STM8GenInstrInfo.inc -gen-instr-info)
 tablegen(LLVM STM8GenMCCodeEmitter.inc -gen-emitter)
