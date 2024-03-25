@@ -42,12 +42,6 @@ STM8RegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
 BitVector STM8RegisterInfo::getReservedRegs(const MachineFunction &MF) const {
   BitVector Reserved(getNumRegs());
 
-  Reserved.set(STM8::R_PC);
-  Reserved.set(STM8::R_PCE);
-  Reserved.set(STM8::R_PCH);
-  Reserved.set(STM8::R_PCL);
-  Reserved.set(STM8::R_PCHL);
-
   Reserved.set(STM8::R_SP);
 
   return Reserved;
@@ -56,9 +50,9 @@ BitVector STM8RegisterInfo::getReservedRegs(const MachineFunction &MF) const {
 const TargetRegisterClass *
 STM8RegisterInfo::getPointerRegClass(const MachineFunction &MF,
                                      unsigned Kind) const {
-  // TODO: extend to actually support different memory models, so we should look
-  // at machine function
-  return &STM8::GPRPCERegClass;
+  // These are all registers that are used as a pointer (not exclusively)
+  // e.g. JP (X) or JP (Y)
+  return &STM8::GPR16RegClass;
 }
 
 bool STM8RegisterInfo::eliminateFrameIndex(MachineBasicBlock::iterator MI,
