@@ -42,24 +42,12 @@ def R_YL : STM8Reg<3, "YL">, DwarfRegNum<[3]>;      // lower byte of Y
 def R_YH : STM8Reg<4, "YH">, DwarfRegNum<[4]>;      // higher byte of Y
 def R_C : STM8Reg<5, "C">, DwarfRegNum<[5]>;        // status register
 
-def R_PCE : STM8Reg<6, "PCE">, DwarfRegNum<[-1]>;   // extended byte of PC[24:16]
-def R_PCH : STM8Reg<7, "PCH">, DwarfRegNum<[-1]>;   // higher byte of PC[16:8]
-def R_PCL : STM8Reg<8, "PCL">, DwarfRegNum<[-1]>;   // lower byte of PC [8:0]
-
 // 16bit (sub)registers
 def R_SP : STM8Reg<11, "SP">, DwarfRegNum<[8]>;     // stack pointer
 
 let SubRegIndices = [sub_lo, sub_hi], CoveredBySubRegs = 1 in {
   def R_X : STM8Reg<9, "X", [R_XL, R_XH]>, DwarfRegNum<[6]>;   // X index
   def R_Y : STM8Reg<10, "Y", [R_YL, R_YH]>, DwarfRegNum<[7]>;  // Y index
-
-  // TODO: is it needed?
-  def R_PCHL : STM8Reg<12, "PCH:PCL", [R_PCL, R_PCH]>, DwarfRegNum<[-1]>;  // compilation targt register
-}
-
-// 24bit registers
-let SubRegIndices = [sub_lo, sub_hi, sub_ex], CoveredBySubRegs = 0 in {
-  def R_PC : STM8Reg<13, "PC", [R_PCL, R_PCH, R_PCE]>, DwarfRegNum<[9]>;  // the PC
 }
 
 //===----------------------------------------------------------------------===//
@@ -72,16 +60,12 @@ def GPR8 : RegisterClass<"STM8", [i8], 8, (
   add R_A,
   // index registers
   R_XL, R_XH, R_YL, R_YH,
-  // program counter
-  R_PCL, R_PCH, R_PCE
 )>;
 
 // main 16-bit register class (TODO: is this sensible?)
 def GPR16 : RegisterClass<"STM8", [i16], 8, (
   // index register
   add R_X, R_Y,
-  // lower pc half
-  R_PCHL
 )>;
 
 // accumulator register class
@@ -94,10 +78,6 @@ def GPRX : RegisterClass<"STM8", [i16], 8, (add R_X)>;   // long
 // y index register class
 def GPRYS : RegisterClass<"STM8", [i8], 8, (add R_YL)>;  // short
 def GPRY : RegisterClass<"STM8", [i16], 8, (add R_Y)>;   // long
-
-// program counter
-def GPRPCL : RegisterClass<"STM8", [i16], 8, (add R_PCHL)>; // long
-def GPRPCE : RegisterClass<"STM8", [i32], 8, (add R_PC)>;   // extended
 
 // Register class used for the stack read pseudo instruction.
 def GPRSP : RegisterClass<"STM8", [i16], 8, (add R_SP)>;

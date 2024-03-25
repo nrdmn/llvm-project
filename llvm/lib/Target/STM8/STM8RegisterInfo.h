@@ -24,6 +24,21 @@ namespace llvm {
 
 /// Utilities relating to STM8 registers.
 class STM8RegisterInfo : public STM8GenRegisterInfo {
+public:
+  STM8RegisterInfo();
+
+  const MCPhysReg *getCalleeSavedRegs(const MachineFunction *MF) const override;
+
+  BitVector getReservedRegs(const MachineFunction &MF) const override;
+  const TargetRegisterClass *
+  getPointerRegClass(const MachineFunction &MF,
+                     unsigned Kind = 0) const override;
+
+  bool eliminateFrameIndex(MachineBasicBlock::iterator MI, int SPAdj,
+                           unsigned FIOperandNum,
+                           RegScavenger *RS = nullptr) const override;
+
+  Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
 } // end namespace llvm
