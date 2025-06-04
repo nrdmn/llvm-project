@@ -24,6 +24,7 @@ add_llvm_target(STM8CodeGen
 
   LINK_COMPONENTS
   Core
+  SelectionDAG
 
   ADD_TO_COMPONENT
   STM8
