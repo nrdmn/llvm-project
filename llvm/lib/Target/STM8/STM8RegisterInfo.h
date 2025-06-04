@@ -19,11 +19,27 @@
 
 #define GET_REGINFO_HEADER
 #include "STM8GenRegisterInfo.inc"
+#undef GET_REGINFO_HEADER
 
 namespace llvm {
 
 /// Utilities relating to STM8 registers.
 class STM8RegisterInfo : public STM8GenRegisterInfo {
+public:
+  STM8RegisterInfo() : STM8GenRegisterInfo(0) {}
+
+  const uint16_t *
+  getCalleeSavedRegs(const MachineFunction *MF = nullptr) const override;
+  //const uint32_t *getCallPreservedMask(const MachineFunction &MF,
+                                       //CallingConv::ID CC) const override;
+  BitVector getReservedRegs(const MachineFunction &MF) const override;
+
+  /// Stack Frame Processing Methods
+  bool eliminateFrameIndex(MachineBasicBlock::iterator MI, int SPAdj,
+                           unsigned FIOperandNum,
+                           RegScavenger *RS = nullptr) const override;
+
+  Register getFrameRegister(const MachineFunction &MF) const override;
 };
 
 } // end namespace llvm

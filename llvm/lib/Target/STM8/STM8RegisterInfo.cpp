@@ -27,4 +27,24 @@
 
 namespace llvm {
 
+const uint16_t *
+STM8RegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
+  return nullptr;
+}
+
+BitVector STM8RegisterInfo::getReservedRegs(const MachineFunction &MF) const {
+  return {};
+}
+
+
+bool STM8RegisterInfo::eliminateFrameIndex(MachineBasicBlock::iterator MI, int SPAdj,
+                           unsigned FIOperandNum,
+                           RegScavenger *RS) const {
+  return false;
+}
+
+Register STM8RegisterInfo::getFrameRegister(const MachineFunction &MF) const {
+  return {};
+}
+
 } // end of namespace llvm
